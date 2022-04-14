@@ -1,0 +1,39 @@
+<h1>{{categoryLbls?.catHeading}}</h1>
+
+<p-table [value]="categorys" [rows]="2" [showCurrentPageReport]="true" [rowsPerPageOptions]="[2,4,6,8]"
+    styleClass="p-datatable-customers p-datatable-gridlines" [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th> {{categoryLbls?.category}} </th>
+            <th>{{categoryLbls?.actions}}</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-categ>
+        <tr>
+            <td>{{categ?.category}} </td>
+            <td>
+                <a role="button" class="link" (click)="edit(categ)">{{categoryLbls?.edit}}</a>
+                <a role="button" class="link" (click)="delete(categ)">{{categoryLbls?.delete}}</a>
+            </td>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="2">{{categoryLbls?.noData}}</td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-dialog header="Delete" [(visible)]="displayBasic" [ngClass]="{'overlay': displayBasic}" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <p>{{categoryLbls?.deleteMsg}}</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-times" (click)="hide('yes')" label="Yes"></p-button>
+        <p-button icon="pi pi-times" (click)="hide('no')" label="No"></p-button>
+    </ng-template>
+</p-dialog>
+<div class="mt20">
+    <button type="button" class="btn" routerLink="new">{{categoryLbls?.addCat}}</button>
+    <button type="button" class="btn" (click)="back()">{{categoryLbls?.back }}</button>
+</div>

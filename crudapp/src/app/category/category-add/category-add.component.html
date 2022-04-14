@@ -1,0 +1,21 @@
+<h1>{{categoryLbls?.addCat}}</h1>
+<!-- Form starts -->
+<form [formGroup]="addCategoryForm" (ngSubmit)="submit()">
+    <!-- category -->
+    <div class="mb-3">
+        <label>{{categoryLbls?.cat}}</label>
+        <input type="text" class="form-control" formControlName="category"
+            [ngClass]="{'error': submitted && categoryForm.category.errors}">
+
+        <!-- error block -->
+        <div class="invalid-feedback" *ngIf="submitted && categoryForm.category.errors?.required">
+            <sup>*</sup>{{categoryLbls?.category_error}}
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="mt20">
+        <button type="submit" class="btn">{{categoryLbls?.add}}</button>
+        <button type="button" class="btn" (click)="back()">{{categoryLbls?.back }}</button>
+    </div>
+</form><!-- Form ends -->
